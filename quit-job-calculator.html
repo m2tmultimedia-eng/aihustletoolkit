@@ -1,50 +1,161 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Should I Quit My Job? Calculator</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #0b0b0d 0%, #111827 100%);
+      color: white;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .topbar a, .footer-link a {
+      color: #D4AF37;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 34px;
+    }
+
+    p {
+      color: #d3d3d3;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #121212;
+      color: white;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #D4AF37;
+      color: #0b0b0d;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 22px;
+      padding: 18px;
+      border-radius: 12px;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.22);
+      font-size: 20px;
+      line-height: 1.5;
+    }
+
+    .content {
+      margin-top: 28px;
+      line-height: 1.7;
+    }
+
+    .content h2 {
+      color: #D4AF37;
+    }
+
+    .footer-link {
+      margin-top: 24px;
+    }
+  </style>
 </head>
-<body style="background:#0b0b0d;color:white;font-family:Arial;padding:20px;">
+<body>
+  <div class="container">
+    <div class="topbar">
+      <a href="index.html">← Back to Home</a>
+    </div>
 
-<h1>🤔 Should I Quit My Job? Calculator</h1>
+    <div class="card">
+      <h1>🤔 Should I Quit My Job? Calculator</h1>
+      <p>Compare your side hustle income against your monthly expenses.</p>
 
-<p>Enter your monthly expenses and side hustle income:</p>
+      <input type="number" id="expenses" placeholder="Monthly expenses ($)" />
+      <input type="number" id="income" placeholder="Side hustle income ($)" />
 
-<input type="number" id="expenses" placeholder="Monthly expenses ($)">
-<br><br>
-<input type="number" id="income" placeholder="Side hustle income ($)">
-<br><br>
+      <button onclick="check()">Run Check</button>
 
-<button onclick="check()">Calculate</button>
+      <div id="result" class="result" style="display:none;"></div>
 
-<h2 id="result"></h2>
+      <div class="content">
+        <h2>How this works</h2>
+        <p>
+          This tool compares your current monthly side hustle income with your
+          monthly expenses to see if your income covers your base financial needs.
+        </p>
 
-<script>
-function check() {
-  let expenses = document.getElementById("expenses").value;
-  let income = document.getElementById("income").value;
+        <h2>Important note</h2>
+        <p>
+          This is a basic financial reality check, not life advice carved in stone.
+          Savings, health insurance, debt, emergencies, and job stability still matter.
+        </p>
 
-  if (income >= expenses) {
-    document.getElementById("result").innerHTML =
-      "✅ You're financially ready (based on income vs expenses). Consider your safety net before making the leap.";
-  } else {
-    document.getElementById("result").innerHTML =
-      "⚠️ Not quite yet. Your side hustle doesn't fully cover your expenses.";
-  }
-}
-</script>
+        <h2>Example</h2>
+        <p>
+          If your side hustle brings in $3,500 per month and your monthly expenses
+          are $2,800, you may be in a stronger position than someone earning $1,500
+          with $2,400 in expenses.
+        </p>
 
+        <hr />
+        <h3>🚀 Want to build real income?</h3>
+        <p>
+          Don’t just dream about freedom. Build the math for it first.
+        </p>
+      </div>
+
+      <div class="footer-link">
+        <a href="index.html">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function check() {
+      let expenses = Number(document.getElementById("expenses").value);
+      let income = Number(document.getElementById("income").value);
+
+      document.getElementById("result").style.display = "block";
+
+      if (income >= expenses) {
+        document.getElementById("result").innerHTML =
+          "✅ Based on this simple check, your side hustle income covers your monthly expenses. You may be closer than you think — just make sure you also have savings and a cushion.";
+      } else {
+        document.getElementById("result").innerHTML =
+          "⚠️ Not quite yet. Your side hustle income does not fully cover your monthly expenses. Keep building before making a big jump.";
+      }
+    }
+  </script>
 </body>
 </html>
-
- <h2>How This Calculator Works</h2>
-<p>This side hustle profit calculator helps you estimate how much money you can make based on your available time, hourly rate, and expenses. By understanding your potential monthly and yearly earnings, you can better plan and scale your income streams.</p>
-
-<h2>Why This Matters</h2>
-<p>Many people start side hustles without knowing how profitable they can actually be. This tool gives you a clear picture so you can make smarter decisions and focus on what works.</p>
-
-<h2>Example</h2>
-<p>If you work 10 hours per week at $20/hour, your monthly income would be approximately $800. After expenses, this helps you calculate real profit.</p>
-
-<hr>
-<h3>🚀 Want to build real income?</h3>
-<p>Download the free AI Hustle Starter Guide and learn how to start earning online.</p>
