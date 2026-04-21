@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hourly Rate Goal Calculator</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --bg-main: #0f172a;
+      --bg-secondary: #111827;
+      --panel: rgba(255,255,255,0.07);
+      --panel-border: rgba(255,255,255,0.10);
+      --text-main: #f8fafc;
+      --text-soft: #cbd5e1;
+      --gold: #d4af37;
+      --gold-dark: #b89322;
+      --blue-accent: #38bdf8;
+      --shadow: 0 14px 40px rgba(0,0,0,0.28);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(20,184,166,0.08), transparent 25%),
+        linear-gradient(180deg, var(--bg-main), var(--bg-secondary));
+    }
+
+    .container { max-width: 800px; margin:auto; padding:24px; }
+
+    .topbar a, .footer-link a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    h1 { font-size: 34px; margin-top:0; }
+    p { color: var(--text-soft); }
+
+    input {
+      width:100%;
+      padding:14px;
+      margin:10px 0;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.12);
+      background:#121212;
+      color:white;
+    }
+
+    button {
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      background: var(--gold);
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    button:hover { background: var(--gold-dark); }
+
+    .result {
+      margin-top:20px;
+      padding:16px;
+      border-radius:12px;
+      background: rgba(56,189,248,0.08);
+      border:1px solid rgba(56,189,248,0.2);
+      display:none;
+    }
+
+    .content { margin-top:25px; }
+    .content h2 { color: var(--blue-accent); }
+
+  </style>
+</head>
+
+<body>
+<div class="container">
+
+<div class="topbar">
+<a href="index.html">← Back to Home</a>
+</div>
+
+<div class="card">
+
+<h1>💵 Hourly Rate Goal Calculator</h1>
+<p>Find out what hourly rate you need to hit your income goal.</p>
+
+<input id="goal" placeholder="Monthly goal ($)">
+<input id="hours" placeholder="Hours per week">
+
+<button onclick="calc()">Calculate</button>
+
+<div id="result" class="result"></div>
+
+<div class="content">
+<h2>Why this matters</h2>
+<p>Most people guess pricing. This shows what you ACTUALLY need.</p>
+</div>
+
+</div>
+</div>
+
+<script>
+function calc(){
+let goal = document.getElementById("goal").value;
+let hours = document.getElementById("hours").value;
+let rate = goal / (hours * 4);
+
+let r = document.getElementById("result");
+r.style.display="block";
+r.innerHTML = "You need about $" + rate.toFixed(2) + "/hour.";
+}
+</script>
+
+</body>
+</html>
