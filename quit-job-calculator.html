@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Should I Quit My Job? Calculator</title>
+</head>
+<body style="background:#0b0b0d;color:white;font-family:Arial;padding:20px;">
+
+<h1>🤔 Should I Quit My Job? Calculator</h1>
+
+<p>Enter your monthly expenses and side hustle income:</p>
+
+<input type="number" id="expenses" placeholder="Monthly expenses ($)">
+<br><br>
+<input type="number" id="income" placeholder="Side hustle income ($)">
+<br><br>
+
+<button onclick="check()">Calculate</button>
+
+<h2 id="result"></h2>
+
+<script>
+function check() {
+  let expenses = document.getElementById("expenses").value;
+  let income = document.getElementById("income").value;
+
+  if (income >= expenses) {
+    document.getElementById("result").innerHTML =
+      "✅ You're financially ready (based on income vs expenses). Consider your safety net before making the leap.";
+  } else {
+    document.getElementById("result").innerHTML =
+      "⚠️ Not quite yet. Your side hustle doesn't fully cover your expenses.";
+  }
+}
+</script>
+
+</body>
+</html>
+
+<h2>How This Calculator Works</h2>
+<p>This side hustle profit calculator helps you estimate how much money you can make based on your available time, hourly rate, and expenses. By understanding your potential monthly and yearly earnings, you can better plan and scale your income streams.</p>
+
+<h2>Why This Matters</h2>
+<p>Many people start side hustles without knowing how profitable they can actually be. This tool gives you a clear picture so you can make smarter decisions and focus on what works.</p>
+
+<h2>Example</h2>
+<p>If you work 10 hours per week at $20/hour, your monthly income would be approximately $800. After expenses, this helps you calculate real profit.</p>
