@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Savings Runway</title>
+
+<style>
+body{margin:0;font-family:Arial;background:#0f172a;color:white;}
+.container{max-width:800px;margin:auto;padding:24px;}
+.card{background:rgba(255,255,255,0.07);padding:28px;border-radius:20px;}
+input,button{width:100%;padding:14px;margin:10px 0;border-radius:12px;}
+button{background:#d4af37;font-weight:bold;}
+.result{margin-top:20px;padding:15px;background:#1e293b;border-radius:12px;display:none;}
+</style>
+
+</head>
+
+<body>
+<div class="container">
+
+<a href="index.html">← Back to Home</a>
+
+<div class="card">
+<h1>🏦 Savings Runway Calculator</h1>
+
+<input id="savings" placeholder="Total savings">
+<input id="expenses" placeholder="Monthly expenses">
+
+<button onclick="calc()">Calculate</button>
+
+<div id="result" class="result"></div>
+
+</div>
+</div>
+
+<script>
+function calc(){
+let s=document.getElementById("savings").value;
+let e=document.getElementById("expenses").value;
+let months=s/e;
+
+let r=document.getElementById("result");
+r.style.display="block";
+r.innerHTML="Runway: " + months.toFixed(1) + " months";
+}
+</script>
+
+</body>
+</html>
