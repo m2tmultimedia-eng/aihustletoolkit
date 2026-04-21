@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Time to $1K Calculator</title>
+</head>
+<body style="background:black;color:white;font-family:Arial;padding:20px;">
+
+<h1>⏳ Time to $1K Calculator</h1>
+
+<input type="number" id="income" placeholder="Daily income ($)">
+<button onclick="calc()">Calculate</button>
+
+<h2 id="output"></h2>
+
+<script>
+function calc() {
+  let income = document.getElementById("income").value;
+  let days = 1000 / income;
+
+  document.getElementById("output").innerHTML =
+    "You will reach $1,000 in " + Math.ceil(days) + " days.";
+}
+</script>
+
+</body>
+</html>
