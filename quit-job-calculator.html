@@ -4,92 +4,131 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Should I Quit My Job? Calculator</title>
-  <style>
-    * { box-sizing: border-box; }
+  <<style>
+  * { box-sizing: border-box; }
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #0b0b0d 0%, #111827 100%);
-      color: white;
-    }
+  :root {
+    --bg-main: #0f172a;
+    --bg-secondary: #111827;
+    --panel: rgba(255, 255, 255, 0.07);
+    --panel-border: rgba(255, 255, 255, 0.10);
+    --text-main: #f8fafc;
+    --text-soft: #cbd5e1;
+    --gold: #d4af37;
+    --gold-dark: #b89322;
+    --blue-accent: #38bdf8;
+    --shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+  }
 
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 24px;
-    }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--text-main);
+    background:
+      radial-gradient(circle at top left, rgba(56, 189, 248, 0.10), transparent 28%),
+      radial-gradient(circle at top right, rgba(20, 184, 166, 0.08), transparent 25%),
+      linear-gradient(180deg, var(--bg-main) 0%, var(--bg-secondary) 100%);
+  }
 
-    .topbar a, .footer-link a {
-      color: #D4AF37;
-      text-decoration: none;
-      font-weight: bold;
-    }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+  }
 
-    .card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 18px;
-      padding: 28px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
-    }
+  .topbar a, .footer-link a {
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: bold;
+  }
 
-    h1 {
-      margin-top: 0;
-      font-size: 34px;
-    }
+  .topbar a:hover, .footer-link a:hover {
+    color: var(--blue-accent);
+  }
 
-    p {
-      color: #d3d3d3;
-    }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(5px);
+  }
 
-    input {
-      width: 100%;
-      padding: 14px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: #121212;
-      color: white;
-      font-size: 16px;
-    }
+  h1 {
+    margin-top: 0;
+    font-size: 34px;
+    letter-spacing: -0.4px;
+  }
 
-    button {
-      margin-top: 10px;
-      width: 100%;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: #D4AF37;
-      color: #0b0b0d;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+  p {
+    color: var(--text-soft);
+    line-height: 1.7;
+  }
 
-    .result {
-      margin-top: 22px;
-      padding: 18px;
-      border-radius: 12px;
-      background: rgba(212,175,55,0.08);
-      border: 1px solid rgba(212,175,55,0.22);
-      font-size: 20px;
-      line-height: 1.5;
-    }
+  input {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(15, 23, 42, 0.75);
+    color: var(--text-main);
+    font-size: 16px;
+  }
 
-    .content {
-      margin-top: 28px;
-      line-height: 1.7;
-    }
+  input:focus {
+    outline: none;
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.10);
+  }
 
-    .content h2 {
-      color: #D4AF37;
-    }
+  button {
+    margin-top: 10px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: var(--gold);
+    color: #111111;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.18s ease, transform 0.18s ease;
+  }
 
-    .footer-link {
-      margin-top: 24px;
-    }
-  </style>
+  button:hover {
+    background: var(--gold-dark);
+    transform: translateY(-1px);
+  }
+
+  .result {
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 14px;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.20);
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .content {
+    margin-top: 28px;
+    line-height: 1.7;
+  }
+
+  .content h2 {
+    color: var(--blue-accent);
+  }
+
+  .content h3 {
+    color: var(--gold);
+  }
+
+  .footer-link {
+    margin-top: 24px;
+  }
+</style>
 </head>
 <body>
   <div class="container">
