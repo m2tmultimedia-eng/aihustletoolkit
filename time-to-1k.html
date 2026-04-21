@@ -1,39 +1,157 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Time to $1K Calculator</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #0b0b0d 0%, #111827 100%);
+      color: white;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .topbar a, .footer-link a {
+      color: #D4AF37;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 34px;
+    }
+
+    p {
+      color: #d3d3d3;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #121212;
+      color: white;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #D4AF37;
+      color: #0b0b0d;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 22px;
+      padding: 18px;
+      border-radius: 12px;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid rgba(212,175,55,0.22);
+      font-size: 20px;
+    }
+
+    .content {
+      margin-top: 28px;
+      line-height: 1.7;
+    }
+
+    .content h2 {
+      color: #D4AF37;
+    }
+
+    .footer-link {
+      margin-top: 24px;
+    }
+  </style>
 </head>
-<body style="background:black;color:white;font-family:Arial;padding:20px;">
+<body>
+  <div class="container">
+    <div class="topbar">
+      <a href="index.html">← Back to Home</a>
+    </div>
 
-<h1>⏳ Time to $1K Calculator</h1>
+    <div class="card">
+      <h1>⏳ Time to $1K Calculator</h1>
+      <p>Find out how many days it may take to reach your first $1,000 goal.</p>
 
-<input type="number" id="income" placeholder="Daily income ($)">
-<button onclick="calc()">Calculate</button>
+      <input type="number" id="income" placeholder="Daily income ($)" />
+      <button onclick="calc()">Calculate Time</button>
 
-<h2 id="output"></h2>
+      <div id="output" class="result" style="display:none;"></div>
 
-<script>
-function calc() {
-  let income = document.getElementById("income").value;
-  let days = 1000 / income;
+      <div class="content">
+        <h2>How this works</h2>
+        <p>
+          Enter the amount you expect to earn per day, and this tool estimates
+          how many days it will take to hit $1,000.
+        </p>
 
-  document.getElementById("output").innerHTML =
-    "You will reach $1,000 in " + Math.ceil(days) + " days.";
-}
-</script>
+        <h2>Why it matters</h2>
+        <p>
+          Smaller milestones feel real. “Make money online” is vague. “Hit my first $1K”
+          is something your brain can actually lock in on.
+        </p>
 
+        <h2>Example</h2>
+        <p>
+          If you make $50 per day, it will take about 20 days to reach $1,000.
+        </p>
+
+        <hr />
+        <h3>🚀 Want to build real income?</h3>
+        <p>
+          Use this number as your target, then build a simple plan around it and keep stacking.
+        </p>
+      </div>
+
+      <div class="footer-link">
+        <a href="index.html">← Back to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calc() {
+      let income = Number(document.getElementById("income").value);
+
+      if (income <= 0) {
+        document.getElementById("output").style.display = "block";
+        document.getElementById("output").innerHTML = "Please enter a daily income greater than 0.";
+        return;
+      }
+
+      let days = 1000 / income;
+
+      document.getElementById("output").style.display = "block";
+      document.getElementById("output").innerHTML =
+        "You will reach $1,000 in about " + Math.ceil(days) + " days.";
+    }
+  </script>
 </body>
 </html>
-
- <h2>How This Calculator Works</h2>
-<p>This side hustle profit calculator helps you estimate how much money you can make based on your available time, hourly rate, and expenses. By understanding your potential monthly and yearly earnings, you can better plan and scale your income streams.</p>
-
-<h2>Why This Matters</h2>
-<p>Many people start side hustles without knowing how profitable they can actually be. This tool gives you a clear picture so you can make smarter decisions and focus on what works.</p>
-
-<h2>Example</h2>
-<p>If you work 10 hours per week at $20/hour, your monthly income would be approximately $800. After expenses, this helps you calculate real profit.</p>
-
-<hr>
-<h3>🚀 Want to build real income?</h3>
-<p>Download the free AI Hustle Starter Guide and learn how to start earning online.</p>
