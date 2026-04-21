@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Monthly Income Calculator</title>
+
+<style>
+/* SAME STYLE SYSTEM */
+body{margin:0;font-family:Arial;background:#0f172a;color:white;}
+.container{max-width:800px;margin:auto;padding:24px;}
+.card{background:rgba(255,255,255,0.07);padding:28px;border-radius:20px;}
+input,button{width:100%;padding:14px;margin:10px 0;border-radius:12px;}
+button{background:#d4af37;font-weight:bold;}
+.result{margin-top:20px;padding:15px;background:#1e293b;border-radius:12px;display:none;}
+</style>
+
+</head>
+
+<body>
+<div class="container">
+
+<a href="index.html">← Back to Home</a>
+
+<div class="card">
+<h1>📈 Monthly Income Calculator</h1>
+
+<input id="hours" placeholder="Hours per week">
+<input id="rate" placeholder="Hourly rate">
+
+<button onclick="calc()">Calculate</button>
+
+<div id="result" class="result"></div>
+
+</div>
+</div>
+
+<script>
+function calc(){
+let h=document.getElementById("hours").value;
+let r=document.getElementById("rate").value;
+let total=h*r*4;
+
+let res=document.getElementById("result");
+res.style.display="block";
+res.innerHTML="Monthly income: $" + total;
+}
+</script>
+
+</body>
+</html>
