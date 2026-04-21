@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Side Hustle Profit Calculator</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #0b0b0d; color: white; }
+    input, button { padding: 10px; margin: 5px; }
+    .box { background: #1a1a1d; padding: 20px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+
+<h1>💰 Side Hustle Profit Calculator</h1>
+
+<div class="box">
+  <input type="number" id="hours" placeholder="Hours per week">
+  <input type="number" id="rate" placeholder="Hourly rate ($)">
+  <input type="number" id="expenses" placeholder="Monthly expenses ($)">
+  <br>
+  <button onclick="calculate()">Calculate</button>
+
+  <h2 id="result"></h2>
+</div>
+
+<script>
+function calculate() {
+  let hours = document.getElementById("hours").value;
+  let rate = document.getElementById("rate").value;
+  let expenses = document.getElementById("expenses").value;
+
+  let monthly = (hours * rate * 4) - expenses;
+  let yearly = monthly * 12;
+
+  document.getElementById("result").innerHTML =
+    "Monthly Profit: $" + monthly + "<br>Yearly Profit: $" + yearly;
+}
+</script>
+
+</body>
+</html>
+  
+  <h2>How This Calculator Works</h2>
+<p>This side hustle profit calculator helps you estimate how much money you can make based on your available time, hourly rate, and expenses. By understanding your potential monthly and yearly earnings, you can better plan and scale your income streams.</p>
+
+<h2>Why This Matters</h2>
+<p>Many people start side hustles without knowing how profitable they can actually be. This tool gives you a clear picture so you can make smarter decisions and focus on what works.</p>
+
+<h2>Example</h2>
+<p>If you work 10 hours per week at $20/hour, your monthly income would be approximately $800. After expenses, this helps you calculate real profit.</p>
