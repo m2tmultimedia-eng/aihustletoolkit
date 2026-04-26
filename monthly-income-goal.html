@@ -1,78 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Monthly Income Calculator</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monthly Income Goal Calculator</title>
+  <meta name="description" content="Estimate your monthly income based on hours worked and hourly rate." />
 
-<style>
-/* SAME STYLE SYSTEM */
-body{margin:0;font-family:Arial;background:#0f172a;color:white;}
-.container{max-width:800px;margin:auto;padding:24px;}
-.card{background:rgba(255,255,255,0.07);padding:28px;border-radius:20px;}
-input,button{width:100%;padding:14px;margin:10px 0;border-radius:12px;}
-button{background:#d4af37;font-weight:bold;}
-.result{margin-top:20px;padding:15px;background:#1e293b;border-radius:12px;display:none;}
-</style>
+  <style>
+    * { box-sizing: border-box; }
 
+    :root {
+      --bg-main: #0f172a;
+      --bg-secondary: #111827;
+      --panel: rgba(255,255,255,0.07);
+      --panel-border: rgba(255,255,255,0.10);
+      --text-main: #f8fafc;
+      --text-soft: #cbd5e1;
+      --gold: #d4af37;
+      --gold-dark: #b89322;
+      --blue-accent: #38bdf8;
+      --shadow: 0 14px 40px rgba(0,0,0,0.28);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(20,184,166,0.08), transparent 25%),
+        linear-gradient(180deg, var(--bg-main), var(--bg-secondary));
+    }
+
+    .page-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .topbar {
+      margin-bottom: 24px;
+    }
+
+    .topbar a,
+    .footer-link a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .topbar a:hover,
+    .footer-link a:hover {
+      color: var(--blue-accent);
+    }
+
+    .card {
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(5px);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 34px;
+      letter-spacing: -0.4px;
+    }
+
+    p {
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(15,23,42,0.75);
+      color: var(--text-main);
+      font-size: 16px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: rgba(56,189,248,0.45);
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.10);
+    }
+
+    button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: var(--gold);
+      color: #111111;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--gold-dark);
+    }
+
+    .result {
+      margin-top: 22px;
+      padding: 18px;
+      border-radius: 14px;
+      background: rgba(56,189,248,0.08);
+      border: 1px solid rgba(56,189,248,0.20);
+      font-size: 20px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .content {
+      margin-top: 28px;
+      line-height: 1.7;
+    }
+
+    .content h2 {
+      color: var(--blue-accent);
+    }
+
+    .content h3 {
+      color: var(--gold);
+    }
+
+    .footer-link {
+      margin-top: 24px;
+    }
+  </style>
 </head>
 
 <body>
-<div class="container">
+  <div class="page-wrap">
+    <div class="container">
+      <div class="topbar">
+        <a href="index.html">← Back to Home</a>
+      </div>
 
-<a href="index.html">← Back to Home</a>
+      <div class="card">
+        <h1>📈 Monthly Income Goal Calculator</h1>
+        <p>Estimate how much monthly income you can generate based on your hours and rate.</p>
 
-<div class="card">
-<h1>📈 Monthly Income Calculator</h1>
+        <input type="number" id="hours" placeholder="Hours per week" />
+        <input type="number" id="rate" placeholder="Hourly rate ($)" />
 
-<input id="hours" placeholder="Hours per week">
-<input id="rate" placeholder="Hourly rate">
+        <button onclick="calcIncome()">Calculate Monthly Income</button>
 
-<button onclick="calc()">Calculate</button>
+        <div id="result" class="result"></div>
 
-<div id="result" class="result"></div>
+        <div class="content">
+          <h2>How this works</h2>
+          <p>
+            This calculator multiplies your weekly hours by your hourly rate,
+            then estimates your monthly income based on a 4-week month.
+          </p>
 
-</div>
-</div>
+          <h2>Important note</h2>
+          <p>
+            This is a simple estimate. It does not include taxes, missed work,
+            cancellations, refunds, or uneven income from month to month.
+          </p>
 
-<script>
-function calc(){
-let h=document.getElementById("hours").value;
-let r=document.getElementById("rate").value;
-let total=h*r*4;
+          <h2>Example</h2>
+          <p>
+            If you work 15 hours per week at $25 per hour,
+            your estimated monthly income would be about $1,500.
+          </p>
 
-let res=document.getElementById("result");
-res.style.display="block";
-res.innerHTML="Monthly income: $" + total;
-}
-</script>
-<div class="content">
+          <hr />
+          <h3>🚀 Want to build real income?</h3>
+          <p>
+            This shows what your time can produce financially. Busy feels good. Paid feels better.
+          </p>
+        </div>
 
-<h2>How this works</h2>
-<p>
-This calculator multiplies your weekly working hours by your hourly rate,
-then estimates your total monthly income based on a 4-week month.
-</p>
+        <div class="footer-link">
+          <a href="index.html">← Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<h2>Important note</h2>
-<p>
-This is a basic estimate. It doesn’t include taxes, inconsistent work,
-or unexpected downtime. Real income can fluctuate, especially when you're just starting out.
-</p>
+  <script>
+    function calcIncome() {
+      const hours = Number(document.getElementById("hours").value);
+      const rate = Number(document.getElementById("rate").value);
+      const result = document.getElementById("result");
 
-<h2>Example</h2>
-<p>
-If you work 15 hours per week at $25 per hour, your estimated monthly income would be around $1,500.
-</p>
+      result.style.display = "block";
 
-<hr>
+      if (hours <= 0 || rate <= 0) {
+        result.innerHTML = "Please enter valid numbers greater than 0.";
+        return;
+      }
 
-<h3>🚀 Want to build real income?</h3>
-<p>
-Use this as your baseline, then increase your rate or hours strategically to grow faster.
-</p>
+      const monthlyIncome = hours * rate * 4;
 
-</div>
+      result.innerHTML =
+        "Estimated monthly income: <strong>$" + monthlyIncome.toFixed(2) + "</strong>";
+    }
+  </script>
 </body>
-  <p><a href="index.html">← Back to Home</a></p>
 </html>
-
