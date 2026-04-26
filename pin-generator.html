@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pinterest Pin Generator | AI Hustle Toolkit</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+
+    textarea, input {
+      width: 90%;
+      max-width: 700px;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px 18px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      background: #d4af37;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    canvas {
+      margin-top: 25px;
+      max-width: 350px;
+      border-radius: 18px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.4);
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>📌 Pinterest Pin Generator</h1>
+<p>Create branded pins for AI Hustle Toolkit.</p>
+
+<input id="topText" value="Side Hustle Reality Check" />
+
+<br>
+
+<textarea id="mainText" rows="3">How Long Will It Take You To Make $1,000?</textarea>
+
+<br>
+
+<input id="bottomText" value="Try the free calculator →" />
+
+<br>
+
+<button onclick="generatePin()">Generate Pin</button>
+<button onclick="downloadPin()">Download Pin</button>
+
+<br>
+
+<canvas id="pinCanvas" width="1000" height="1500"></canvas>
+
+<script>
+const canvas = document.getElementById("pinCanvas");
+const ctx = canvas.getContext("2d");
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = text.split(" ");
+  let line = "";
+
+  for (let n = 0; n < words.length; n++) {
+    const testLine = line + words[n] + " ";
+    const metrics = ctx.measureText(testLine);
+    const testWidth = metrics.width;
+
+    if (testWidth > maxWidth && n > 0) {
+      ctx.fillText(line, x, y);
+      line = words[n] + " ";
+      y += lineHeight;
+    } else {
+      line = testLine;
+    }
+  }
+
+  ctx.fillText(line, x, y);
+}
+
+function generatePin() {
+  const topText = document.getElementById("topText").value;
+  const mainText = document.getElementById("mainText").value;
+  const bottomText = document.getElementById("bottomText").value;
+
+  // Background gradient
+  const gradient = ctx.createLinearGradient(0, 0, 1000, 1500);
+  gradient.addColorStop(0, "#0f172a");
+  gradient.addColorStop(1, "#111827");
+  ctx.fillStyle = gradient;
+  ctx.fillRect(0, 0, 1000, 1500);
+
+  // Soft blue glow
+  const glow = ctx.createRadialGradient(150, 150, 50, 150, 150, 500);
+  glow.addColorStop(0, "rgba(56,189,248,0.35)");
+  glow.addColorStop(1, "rgba(56,189,248,0)");
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, 1000, 1500);
+
+  // Gold border
+  ctx.strokeStyle = "#d4af37";
+  ctx.lineWidth = 10;
+  ctx.strokeRect(45, 45, 910, 1410);
+
+  // Brand
+  ctx.fillStyle = "#d4af37";
+  ctx.font = "bold 44px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText("AI Hustle Toolkit", 500, 135);
+
+  // Top text badge
+  ctx.fillStyle = "rgba(56,189,248,0.15)";
+  ctx.fillRect(170, 225, 660, 80);
+
+  ctx.fillStyle = "#38bdf8";
+  ctx.font = "bold 34px Arial";
+  ctx.fillText(topText, 500, 277);
+
+  // Main headline
+  ctx.fillStyle = "#f8fafc";
+  ctx.font = "bold 76px Arial";
+  wrapText(ctx, mainText, 500, 560, 780, 90);
+
+  // Bottom CTA box
+  ctx.fillStyle = "#d4af37";
+  ctx.fillRect(150, 1220, 700, 120);
+
+  ctx.fillStyle = "#111111";
+  ctx.font = "bold 44px Arial";
+  ctx.fillText(bottomText, 500, 1295);
+
+  // Website text
+  ctx.fillStyle = "#cbd5e1";
+  ctx.font = "28px Arial";
+  ctx.fillText("Free tools for side hustlers", 500, 1410);
+}
+
+function downloadPin() {
+  const link = document.createElement("a");
+  link.download = "ai-hustle-toolkit-pin.png";
+  link.href = canvas.toDataURL("image/png");
+  link.click();
+}
+
+generatePin();
+</script>
+
+</body>
+</html>
