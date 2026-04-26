@@ -3,199 +3,234 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Side Hustle Profit Calculator</title>
-  
-   <style>
-  * { box-sizing: border-box; }
 
-  :root {
-    --bg-main: #0f172a;
-    --bg-secondary: #111827;
-    --panel: rgba(255, 255, 255, 0.07);
-    --panel-border: rgba(255, 255, 255, 0.10);
-    --text-main: #f8fafc;
-    --text-soft: #cbd5e1;
-    --gold: #d4af37;
-    --gold-dark: #b89322;
-    --blue-accent: #38bdf8;
-    --shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
-  }
+  <title>Side Hustle Profit Calculator | AI Hustle Toolkit</title>
+  <meta name="description" content="Use this free side hustle profit calculator to estimate monthly and yearly profit based on your hours, rate, and expenses." />
+  <meta name="keywords" content="side hustle profit calculator, side hustle calculator, profit calculator, income calculator, online business calculator" />
+  <meta name="author" content="AI Hustle Toolkit" />
+  <meta name="robots" content="index, follow" />
 
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: var(--text-main);
-    background:
-      radial-gradient(circle at top left, rgba(56, 189, 248, 0.10), transparent 28%),
-      radial-gradient(circle at top right, rgba(20, 184, 166, 0.08), transparent 25%),
-      linear-gradient(180deg, var(--bg-main) 0%, var(--bg-secondary) 100%);
-  }
+  <meta property="og:title" content="Side Hustle Profit Calculator" />
+  <meta property="og:description" content="Estimate your monthly and yearly side hustle profit with this free calculator." />
+  <meta property="og:type" content="website" />
 
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 24px;
-  }
+  <style>
+    * { box-sizing: border-box; }
 
-  .topbar a, .footer-link a {
-    color: var(--gold);
-    text-decoration: none;
-    font-weight: bold;
-  }
+    :root {
+      --bg-main: #0f172a;
+      --bg-secondary: #111827;
+      --panel: rgba(255,255,255,0.07);
+      --panel-border: rgba(255,255,255,0.10);
+      --text-main: #f8fafc;
+      --text-soft: #cbd5e1;
+      --gold: #d4af37;
+      --gold-dark: #b89322;
+      --blue-accent: #38bdf8;
+      --shadow: 0 14px 40px rgba(0,0,0,0.28);
+    }
 
-  .topbar a:hover, .footer-link a:hover {
-    color: var(--blue-accent);
-  }
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
 
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--panel-border);
-    border-radius: 20px;
-    padding: 28px;
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(5px);
-  }
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(20,184,166,0.08), transparent 25%),
+        linear-gradient(180deg, var(--bg-main), var(--bg-secondary));
+    }
 
-  h1 {
-    margin-top: 0;
-    font-size: 34px;
-    letter-spacing: -0.4px;
-  }
+    .page-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
 
-  p {
-    color: var(--text-soft);
-    line-height: 1.7;
-  }
+    .container {
+      width: 100%;
+      max-width: 800px;
+    }
 
-  input {
-    width: 100%;
-    padding: 14px;
-    margin: 10px 0;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(15, 23, 42, 0.75);
-    color: var(--text-main);
-    font-size: 16px;
-  }
+    .topbar {
+      margin-bottom: 24px;
+    }
 
-  input:focus {
-    outline: none;
-    border-color: rgba(56, 189, 248, 0.45);
-    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.10);
-  }
+    .topbar a,
+    .footer-link a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-  button {
-    margin-top: 10px;
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 12px;
-    background: var(--gold);
-    color: #111111;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.18s ease, transform 0.18s ease;
-  }
+    .topbar a:hover,
+    .footer-link a:hover {
+      color: var(--blue-accent);
+    }
 
-  button:hover {
-    background: var(--gold-dark);
-    transform: translateY(-1px);
-  }
+    .card {
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(5px);
+    }
 
-  .result {
-    margin-top: 22px;
-    padding: 18px;
-    border-radius: 14px;
-    background: rgba(56, 189, 248, 0.08);
-    border: 1px solid rgba(56, 189, 248, 0.20);
-    font-size: 20px;
-    line-height: 1.5;
-  }
+    h1 {
+      margin-top: 0;
+      font-size: 34px;
+      letter-spacing: -0.4px;
+    }
 
-  .content {
-    margin-top: 28px;
-    line-height: 1.7;
-  }
+    p {
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
 
-  .content h2 {
-    color: var(--blue-accent);
-  }
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(15,23,42,0.75);
+      color: var(--text-main);
+      font-size: 16px;
+    }
 
-  .content h3 {
-    color: var(--gold);
-  }
+    input:focus {
+      outline: none;
+      border-color: rgba(56,189,248,0.45);
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.10);
+    }
 
-  .footer-link {
-    margin-top: 24px;
-  }
-</style>
+    button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: var(--gold);
+      color: #111111;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
+    button:hover {
+      background: var(--gold-dark);
+    }
+
+    .result {
+      margin-top: 22px;
+      padding: 18px;
+      border-radius: 14px;
+      background: rgba(56,189,248,0.08);
+      border: 1px solid rgba(56,189,248,0.20);
+      font-size: 20px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .content {
+      margin-top: 28px;
+      line-height: 1.7;
+    }
+
+    .content h2 {
+      color: var(--blue-accent);
+    }
+
+    .content h3 {
+      color: var(--gold);
+    }
+
+    .footer-link {
+      margin-top: 24px;
+    }
+  </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="topbar">
-      <a href="index.html">← Back to Home</a>
-    </div>
-
-    <div class="card">
-      <h1>💰 Side Hustle Profit Calculator</h1>
-      <p>Estimate how much profit your side hustle could make each month and year.</p>
-
-      <input type="number" id="hours" placeholder="Hours per week" />
-      <input type="number" id="rate" placeholder="Hourly rate ($)" />
-      <input type="number" id="expenses" placeholder="Monthly expenses ($)" />
-
-      <button onclick="calculate()">Calculate Profit</button>
-
-      <div id="result" class="result" style="display:none;"></div>
-
-      <div class="content">
-        <h2>How this works</h2>
-        <p>
-          This tool multiplies your weekly hours by your hourly rate, estimates
-          monthly income, and subtracts your monthly expenses to show your
-          projected profit.
-        </p>
-
-        <h2>Why it matters</h2>
-        <p>
-          A lot of people start hustles off vibes alone. Respectfully, vibes do
-          not pay bills. This helps you see whether the numbers actually make sense.
-        </p>
-
-        <h2>Example</h2>
-        <p>
-          If you work 10 hours per week at $25 per hour, that’s about $1,000 per month
-          before expenses. If your monthly expenses are $150, your estimated monthly
-          profit would be $850.
-        </p>
-
-        <hr />
-        <h3>🚀 Want to build real income?</h3>
-        <p>
-          Download the free AI Hustle Starter Guide and learn how to turn small skills into income streams.
-        </p>
+  <div class="page-wrap">
+    <div class="container">
+      <div class="topbar">
+        <a href="index.html">← Back to Home</a>
       </div>
 
-      <div class="footer-link">
-        <a href="index.html">← Back to Home</a>
+      <div class="card">
+        <h1>💰 Side Hustle Profit Calculator</h1>
+        <p>Estimate your monthly and yearly profit based on your work hours, hourly rate, and expenses.</p>
+
+        <input type="number" id="hours" placeholder="Hours per week" />
+        <input type="number" id="rate" placeholder="Hourly rate ($)" />
+        <input type="number" id="expenses" placeholder="Monthly expenses ($)" />
+
+        <button onclick="calculate()">Calculate Profit</button>
+
+        <div id="result" class="result"></div>
+
+        <div class="content">
+          <h2>How this works</h2>
+          <p>
+            This calculator multiplies your weekly hours by your hourly rate, estimates your monthly income,
+            then subtracts your monthly expenses to show your projected profit.
+          </p>
+
+          <h2>Important note</h2>
+          <p>
+            This is a simple planning estimate. It does not include taxes, platform fees, refunds,
+            inconsistent work, or unexpected business costs.
+          </p>
+
+          <h2>Example</h2>
+          <p>
+            If you work 10 hours per week at $25 per hour, that is about $1,000 per month before expenses.
+            If your expenses are $150, your estimated monthly profit would be $850.
+          </p>
+
+          <hr />
+          <h3>🚀 Want to build real income?</h3>
+          <p>
+            Use this number as your starting point, then improve your pricing, reduce expenses,
+            or increase your weekly hours to grow your profit.
+          </p>
+        </div>
+
+        <div class="footer-link">
+          <a href="index.html">← Back to Home</a>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
     function calculate() {
-      let hours = Number(document.getElementById("hours").value);
-      let rate = Number(document.getElementById("rate").value);
-      let expenses = Number(document.getElementById("expenses").value);
+      const hours = Number(document.getElementById("hours").value);
+      const rate = Number(document.getElementById("rate").value);
+      const expenses = Number(document.getElementById("expenses").value);
+      const result = document.getElementById("result");
 
-      let monthly = (hours * rate * 4) - expenses;
-      let yearly = monthly * 12;
+      result.style.display = "block";
 
-      document.getElementById("result").style.display = "block";
-      document.getElementById("result").innerHTML =
-        "Monthly Profit: $" + monthly.toFixed(2) + "<br>Yearly Profit: $" + yearly.toFixed(2);
+      if (hours <= 0 || rate <= 0 || expenses < 0) {
+        result.innerHTML = "Please enter valid numbers. Hours and rate must be greater than 0.";
+        return;
+      }
+
+      const monthly = (hours * rate * 4) - expenses;
+      const yearly = monthly * 12;
+
+      result.innerHTML =
+        "Monthly Profit: <strong>$" + monthly.toFixed(2) + "</strong><br>" +
+        "Yearly Profit: <strong>$" + yearly.toFixed(2) + "</strong>";
     }
   </script>
 </body>
