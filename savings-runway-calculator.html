@@ -1,81 +1,224 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Savings Runway</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Savings Runway Calculator</title>
+  <meta name="description" content="Calculate how many months your savings can cover your expenses." />
 
-<style>
-body{margin:0;font-family:Arial;background:#0f172a;color:white;}
-.container{max-width:800px;margin:0auto;padding:24px;}
-.card{background:rgba(255,255,255,0.07);padding:28px;border-radius:20px;}
-input,button{width:100%;padding:14px;margin:10px 0;border-radius:12px;}
-button{background:#d4af37;font-weight:bold;}
-.result{margin-top:20px;padding:15px;background:#1e293b;border-radius:12px;display:none;}
-</style>
+  <style>
+    * { box-sizing: border-box; }
 
+    :root {
+      --bg-main: #0f172a;
+      --bg-secondary: #111827;
+      --panel: rgba(255,255,255,0.07);
+      --panel-border: rgba(255,255,255,0.10);
+      --text-main: #f8fafc;
+      --text-soft: #cbd5e1;
+      --gold: #d4af37;
+      --gold-dark: #b89322;
+      --blue-accent: #38bdf8;
+      --shadow: 0 14px 40px rgba(0,0,0,0.28);
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(20,184,166,0.08), transparent 25%),
+        linear-gradient(180deg, var(--bg-main), var(--bg-secondary));
+    }
+
+    .page-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .topbar {
+      margin-bottom: 24px;
+    }
+
+    .topbar a,
+    .footer-link a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .topbar a:hover,
+    .footer-link a:hover {
+      color: var(--blue-accent);
+    }
+
+    .card {
+      width: 100%;
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(5px);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 34px;
+      letter-spacing: -0.4px;
+    }
+
+    p {
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(15,23,42,0.75);
+      color: var(--text-main);
+      font-size: 16px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: rgba(56,189,248,0.45);
+      box-shadow: 0 0 0 3px rgba(56,189,248,0.10);
+    }
+
+    button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: var(--gold);
+      color: #111111;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--gold-dark);
+    }
+
+    .result {
+      margin-top: 22px;
+      padding: 18px;
+      border-radius: 14px;
+      background: rgba(56,189,248,0.08);
+      border: 1px solid rgba(56,189,248,0.20);
+      font-size: 20px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .content {
+      margin-top: 28px;
+      line-height: 1.7;
+    }
+
+    .content h2 {
+      color: var(--blue-accent);
+    }
+
+    .content h3 {
+      color: var(--gold);
+    }
+
+    .footer-link {
+      margin-top: 24px;
+    }
+  </style>
 </head>
 
 <body>
-<div class="container">
-<div class="topbar">
-<a href="index.html">← Back to Home</a>
-</div>
-<div class="card">
-<h1>🏦 Savings Runway Calculator</h1>
- </div>
+  <div class="page-wrap">
+    <div class="container">
+      <div class="topbar">
+        <a href="index.html">← Back to Home</a>
+      </div>
+
+      <div class="card">
+        <h1>🏦 Savings Runway Calculator</h1>
+        <p>See how many months your savings can cover your expenses.</p>
+
+        <input type="number" id="savings" placeholder="Total savings ($)" />
+        <input type="number" id="expenses" placeholder="Monthly expenses ($)" />
+
+        <button onclick="calcRunway()">Calculate Runway</button>
+
+        <div id="result" class="result"></div>
+
+        <div class="content">
+          <h2>How this works</h2>
+          <p>
+            This calculator divides your total savings by your monthly expenses
+            to estimate how many months of runway you currently have.
+          </p>
+
+          <h2>Important note</h2>
+          <p>
+            This assumes your expenses stay fairly consistent. It does not account for emergencies,
+            surprise bills, debt payments, or new income coming in while your savings are being used.
+          </p>
+
+          <h2>Example</h2>
+          <p>
+            If you have $6,000 saved and your monthly expenses are $2,000,
+            then your current runway is about 3 months.
+          </p>
+
+          <hr />
+          <h3>🚀 Why this matters</h3>
+          <p>
+            Runway buys breathing room. The more of it you have, the less likely you are to make panic decisions with your money.
+          </p>
+        </div>
+
+        <div class="footer-link">
+          <a href="index.html">← Back to Home</a>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <script>
+    function calcRunway() {
+      const savings = Number(document.getElementById("savings").value);
+      const expenses = Number(document.getElementById("expenses").value);
+      const result = document.getElementById("result");
+
+      result.style.display = "block";
+
+      if (savings <= 0 || expenses <= 0) {
+        result.innerHTML = "Please enter valid numbers greater than 0.";
+        return;
+      }
+
+      const months = savings / expenses;
+
+      result.innerHTML =
+        "Your savings could cover about <strong>" + months.toFixed(1) + " months</strong> of expenses.";
+    }
+  </script>
 </body>
-<input id="savings" placeholder="Total savings">
-<input id="expenses" placeholder="Monthly expenses">
-
-<button onclick="calc()">Calculate</button>
-
-<div id="result" class="result"></div>
-
-</div>
-</div>
-
-<script>
-function calc(){
-let s=document.getElementById("savings").value;
-let e=document.getElementById("expenses").value;
-let months=s/e;
-
-let r=document.getElementById("result");
-r.style.display="block";
-r.innerHTML="Runway: " + months.toFixed(1) + " months";
-}
-</script>
-<div class="content">
-
-      <h2>How this works</h2>
-      <p>
-      This calculator divides your total savings by your monthly expenses
-      to estimate how many months you can sustain your current lifestyle without new income.
-      </p>
-
-      <h2>Important note</h2>
-      <p>
-      This assumes your expenses stay consistent. It does not account for emergencies,
-      unexpected costs, or income changes. Always aim for a buffer beyond the minimum.
-      </p>
-
-      <h2>Example</h2>
-      <p>
-      If you have $6,000 saved and your monthly expenses are $2,000,
-      you have approximately 3 months of financial runway.
-      </p>
-
-      <hr>
-
-      <h3>🚀 Why this matters</h3>
-       <p>
-      Runway is your safety net. The more months you have, the more freedom you gain
-      to take risks, grow your hustle, and make smarter decisions.
-      </p>
-
-</div>
-</body>
-  <p><a href="index.html">← Back to Home</a></p>
 </html>
-
