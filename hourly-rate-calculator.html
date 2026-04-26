@@ -98,14 +98,23 @@
 </div>
 
 <script>
-function calc(){
-let goal=document.getElementById("goal").value;
-let hours=document.getElementById("hours").value;
-let rate=goal/(hours*4);
+function calc() {
+  const goal = Number(document.getElementById("goal").value);
+  const hours = Number(document.getElementById("hours").value);
+  const result = document.getElementById("result");
 
-let r=document.getElementById("result");
-r.style.display="block";
-r.innerHTML="You need $" + rate.toFixed(2) + "/hour.";
+  result.style.display = "block";
+
+  if (goal <= 0 || hours <= 0) {
+    result.innerHTML = "Please enter valid numbers greater than 0.";
+    return;
+  }
+
+  const monthlyHours = hours * 4;
+  const rate = goal / monthlyHours;
+
+  result.innerHTML =
+    "You need about <strong>$" + rate.toFixed(2) + "/hour</strong> to hit your monthly goal.";
 }
 </script>
 
