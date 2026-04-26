@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hourly Rate Goal Calculator</title>
-<meta name="description" content="Use this free monthly income calculator to estimate your earnings based on hourly rate and weekly hours." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Hourly Rate Goal Calculator | AI Hustle Toolkit</title>
+  <meta name="description" content="Use this hourly rate goal calculator to find out what you need to charge per hour to hit your monthly income target." />
+  <meta name="keywords" content="hourly rate calculator, freelance rate calculator, pricing calculator, income goal calculator" />
+  <meta name="author" content="AI Hustle Toolkit" />
+  <meta name="robots" content="index, follow" />
+
   <style>
     * { box-sizing: border-box; }
 
@@ -22,85 +26,56 @@
       --shadow: 0 14px 40px rgba(0,0,0,0.28);
     }
 
+    html, body { margin:0; padding:0; }
+
     body {
-      margin: 0;
       font-family: Arial;
       color: var(--text-main);
       background:
         radial-gradient(circle at top left, rgba(56,189,248,0.10), transparent 28%),
-        radial-gradient(circle at top right, rgba(20,184,166,0.08), transparent 25%),
         linear-gradient(180deg, var(--bg-main), var(--bg-secondary));
     }
 
-    .container { max-width: 800px; margin:auto; padding:24px; }
-
-    .topbar a, .footer-link a {
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: bold;
-    }
+    .wrap { display:flex; justify-content:center; padding:24px; }
+    .container { max-width:800px; width:100%; }
 
     .card {
       background: var(--panel);
-      border: 1px solid var(--panel-border);
-      border-radius: 20px;
-      padding: 28px;
-      box-shadow: var(--shadow);
+      border:1px solid var(--panel-border);
+      border-radius:20px;
+      padding:28px;
+      box-shadow:var(--shadow);
     }
 
-    h1 { font-size: 34px; margin-top:0; }
-    p { color: var(--text-soft); }
-
-    input {
+    input, button {
       width:100%;
       padding:14px;
       margin:10px 0;
       border-radius:12px;
-      border:1px solid rgba(255,255,255,0.12);
-      background:#121212;
-      color:white;
     }
 
-    button {
-      width:100%;
-      padding:14px;
-      border:none;
-      border-radius:12px;
-      background: var(--gold);
-      font-weight:bold;
-      cursor:pointer;
-    }
-
-    button:hover { background: var(--gold-dark); }
+    button { background:var(--gold); font-weight:bold; }
 
     .result {
       margin-top:20px;
       padding:16px;
+      background:rgba(56,189,248,0.08);
       border-radius:12px;
-      background: rgba(56,189,248,0.08);
-      border:1px solid rgba(56,189,248,0.2);
       display:none;
     }
-
-    .content { margin-top:25px; }
-    .content h2 { color: var(--blue-accent); }
-
   </style>
 </head>
 
 <body>
+<div class="wrap">
 <div class="container">
 
-<div class="topbar">
 <a href="index.html">← Back to Home</a>
-</div>
 
 <div class="card">
-
 <h1>💵 Hourly Rate Goal Calculator</h1>
-<p>Find out what hourly rate you need to hit your income goal.</p>
 
-<input id="goal" placeholder="Monthly goal ($)">
+<input id="goal" placeholder="Monthly income goal">
 <input id="hours" placeholder="Hours per week">
 
 <button onclick="calc()">Calculate</button>
@@ -108,22 +83,29 @@
 <div id="result" class="result"></div>
 
 <div class="content">
-<h2>Why this matters</h2>
-<p>Most people guess pricing. This shows what you ACTUALLY need.</p>
+<h2>How this works</h2>
+<p>Divides your income goal by your available work hours.</p>
+
+<h2>Important note</h2>
+<p>This is an estimate. Real pricing should include taxes and downtime.</p>
+
+<h2>Example</h2>
+<p>$4000 goal / 80 hours = $50/hour.</p>
 </div>
 
+</div>
 </div>
 </div>
 
 <script>
 function calc(){
-let goal = document.getElementById("goal").value;
-let hours = document.getElementById("hours").value;
-let rate = goal / (hours * 4);
+let goal=document.getElementById("goal").value;
+let hours=document.getElementById("hours").value;
+let rate=goal/(hours*4);
 
-let r = document.getElementById("result");
+let r=document.getElementById("result");
 r.style.display="block";
-r.innerHTML = "You need about $" + rate.toFixed(2) + "/hour.";
+r.innerHTML="You need $" + rate.toFixed(2) + "/hour.";
 }
 </script>
 
